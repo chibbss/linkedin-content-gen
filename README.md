@@ -1,4 +1,7 @@
 # linkedin-content-gen
+<img width="1361" alt="Screenshot 2025-05-01 at 22 13 57" src="https://github.com/user-attachments/assets/09388293-9a21-487c-9cf2-279e67b968a2" />
+
+<img width="854" alt="Screenshot 2025-05-01 at 22 01 12" src="https://github.com/user-attachments/assets/0e635e52-1289-466d-8221-7061fc92c7f4" />
 
 
 📄 Project Summary: LinkedIn Post Generator Prototype
