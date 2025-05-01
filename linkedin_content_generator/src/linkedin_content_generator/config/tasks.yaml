@@ -1,0 +1,46 @@
+# tasks.yaml
+
+discover_viral_content_task:
+  description: >
+    Discover top-performing LinkedIn posts about {topic} with 500+ likes.
+    Capture: post text, engagement metrics, author, and URL.
+  expected_output: >
+    List of 3-5 viral posts with analysis-ready data
+  agent: researcher
+
+
+analyze_viral_patterns_task:
+  description: >
+    Analyze why the post went viral. Break down:
+    - Hook type (question/statistic/story)
+    - Tone (inspirational/professional/conversational)
+    - Structure (Problem-Solution-CTA etc.)
+    - Key techniques used (data storytelling, social proof, etc.)
+  expected_output: >
+    JSON report with viral post anatomy breakdown
+  agent: reporting_analyst
+
+
+generate_post_draft_task:
+  description: >
+    Create a new LinkedIn post inspired by the viral content analysis.
+    Adapt for our brand voice: {brand_voice}.
+    Include CTA: {cta_link}.
+    Must sound human and non-salesy.
+  expected_output: >
+    Polished 3-paragraph LinkedIn post draft
+  agent: copywriter
+
+
+quality_assurance_task:
+  description: >
+    Review the generated post for:
+    - Brand voice alignment
+    - Natural language flow
+    - CTA effectiveness
+    - Buzzword elimination
+  expected_output: >
+    Approved post draft or list of required edits
+  agent: reviewer
+
+

@@ -1,0 +1,23 @@
+[project]
+name = "linkedin_content_generator"
+version = "0.1.0"
+description = "linkedin_content_generator using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.108.0,<1.0.0"
+]
+
+[project.scripts]
+linkedin_content_generator = "linkedin_content_generator.main:run"
+run_crew = "linkedin_content_generator.main:run"
+train = "linkedin_content_generator.main:train"
+replay = "linkedin_content_generator.main:replay"
+test = "linkedin_content_generator.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

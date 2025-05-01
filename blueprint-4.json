@@ -1,0 +1,321 @@
+{
+    "name": "Linkedin Content Generator",
+    "flow": [
+        {
+            "id": 19,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 2225240,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "lead-gen start"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 20,
+            "module": "phantombuster:lauchAPhantom",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7826132
+            },
+            "mapper": {
+                "phantom": "5724134463621484"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "phantom": {
+                            "mode": "edit",
+                            "nested": []
+                        },
+                        "menualLaunch": {
+                            "mode": "chose"
+                        },
+                        "saveArgument": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "phantombuster"
+                            },
+                            "label": "My PhantomBuster connection (Emmanuel's workspace)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:phantombuster",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "phantom",
+                        "type": "select",
+                        "label": "Phantom ID",
+                        "required": true
+                    },
+                    {
+                        "name": "saveArgument",
+                        "type": "boolean",
+                        "label": "Save Argument"
+                    },
+                    {
+                        "name": "menualLaunch",
+                        "type": "boolean",
+                        "label": "Menual Launch"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 21,
+            "module": "phantombuster:getAnOutput",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 7826132
+            },
+            "mapper": {
+                "phantom": "5724134463621484"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "phantom": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "phantombuster"
+                            },
+                            "label": "My PhantomBuster connection (Emmanuel's workspace)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:phantombuster",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "phantom",
+                        "type": "select",
+                        "label": "Phantom ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 22,
+            "module": "http:ActionGetFile",
+            "version": 3,
+            "parameters": {
+                "handleErrors": false
+            },
+            "mapper": {
+                "url": "https://phantombuster.s3.amazonaws.com/DLE1EGxuH9A/fDeusYNagsLDi1mH9PkkFg/result.csv",
+                "serializeUrl": false,
+                "method": "get",
+                "shareCookies": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {},
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "hidden",
+                        "label": "Method"
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 23,
+            "module": "csv:ParseCSV",
+            "version": 1,
+            "parameters": {
+                "relax": false,
+                "colCount": null,
+                "delimiterType": ",",
+                "csvContainsHeaders": true
+            },
+            "mapper": {
+                "csv": "{{22.data}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "delimiterType": {
+                            "label": "Comma"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "colCount",
+                        "type": "number",
+                        "label": "Number of columns"
+                    },
+                    {
+                        "name": "csvContainsHeaders",
+                        "type": "boolean",
+                        "label": "CSV contains headers",
+                        "required": true
+                    },
+                    {
+                        "name": "delimiterType",
+                        "type": "select",
+                        "label": "Delimiter",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                ",",
+                                "\t",
+                                "other"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "relax",
+                        "type": "boolean",
+                        "label": "Preserve quotes inside unquoted field",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "csv",
+                        "type": "text",
+                        "label": "CSV",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 39,
+            "module": "google-drive:uploadAFile",
+            "version": 4,
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0,
+                    "messages": [
+                        {
+                            "category": "setup",
+                            "severity": "error",
+                            "message": "Value must not be empty."
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com",
+        "notes": []
+    }
+}
