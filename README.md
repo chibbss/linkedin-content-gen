@@ -3,6 +3,8 @@
 
 <img width="854" alt="Screenshot 2025-05-01 at 22 01 12" src="https://github.com/user-attachments/assets/0e635e52-1289-466d-8221-7061fc92c7f4" />
 
+![Uploading Screenshot 2025-05-01 at 22.17.06.png…]()
+
 
 📄 Project Summary: LinkedIn Post Generator Prototype
 
